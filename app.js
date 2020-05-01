@@ -55,3 +55,36 @@ function promptUser() {
         }
     ])
 }
+
+promptUser()
+    .then(data => {
+        let tempString = `Title: ${data.title} https://img.shields.io/badge/title-${data.title}-blue
+        
+        Description of the Project: 
+        
+        ${data.description}
+        
+        Table of Contents:
+        
+        ${data.tableOfContents}
+        
+        The project can be installed by using the following method - ${data.installation}.
+        
+        Project can be used in the following way,
+        ${data.usage}
+        
+        Project uses ${data.license} license.
+        
+        The contributors to the project are ${data.contributors}.
+        
+        Project can be tested using ${data.test}.
+        
+        You can contact me at ${data.gitHubUserName}.`
+
+        fs.writeFile("README.md", tempString, function (err) {
+            if (err) {
+                console.log(err)
+            }
+            console.log("ReadMe.md has been generated successfully.")
+        });
+    });
